@@ -1,8 +1,8 @@
 "use strict";
 
-import handleDesktopHover from "./handleDesktopHover/handleDesktopHover";
-import handleDesktopKeydown from "./handleDesktopKeydown/handleDesktopKeydown";
-import handleAdobeTrackZipCode from "./handleAdobeTrackZipCode/handleAdobeTrackZipCode";
+import handleDesktopHover from "./handleDesktopHover";
+import handleAdobeTrackZipCode from "./handleAdobeTrackZipCode";
+import handleDesktopKeydown from "./handleDesktopKeydown";
 
 const handleDesktopEvents = desktopNav => {
   // Set Nav Button Events
