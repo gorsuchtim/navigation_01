@@ -1,15 +1,19 @@
 "use strict";
 
 import "../Utilities/Utilities";
-import "../Utilities/BuildElement";
-import elementFactory from "../Utilities/BuildElement";
+
+const createActiveSpan = (currentElement, spanText) => {
+  var span = document.createElement("span");
+  span.classList.add("current--srtext");
+  span.textContent = `Current ${spanText}`;
+
+  currentElement.appendChild(span);
+};
 
 const setCurrentPage = (currentButtons, page) => {
   currentButtons.forEach(currentButton => {
     var linkList = currentButton.nextElementSibling;
-    var links = Utilities.elementLib.toArray(
-      linkList.querySelectorAll(".meganav__link")
-    );
+    var links = Utilities.toArray(linkList.querySelectorAll(".meganav__link"));
 
     links.forEach(link => {
       var fullHref = link.getAttribute("href");
@@ -20,7 +24,7 @@ const setCurrentPage = (currentButtons, page) => {
 
       if (hrefPageName == page) {
         link.classLIst.add("current--page");
-        elementFactory.init(link);
+        createActiveSpan(link, "Page");
       }
     });
   });
@@ -37,8 +41,7 @@ const setCurrentSections = dataSections => {
     navButtons.forEach(navButton => {
       if (navButton.getAttribute("data-section") == dataSectionToMatch) {
         navButton.classList.add("current--section");
-        elementFactory.init(navButton);
-        currentButtons.push(navButton);
+        createActiveSpan(navButton, "Section");
         currentButtons.push(navButton);
       }
     });
