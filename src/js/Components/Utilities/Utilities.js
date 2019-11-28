@@ -2,7 +2,7 @@
 import Services from "../Services/Services";
 import Globals from "../Globals/Globals";
 
-const util = {
+const Utilties = {
   math: {
     createRandomNumber(max, min, currentNumber) {
       var newNumber = Math.floor(Math.random() * (max - min) + min);
@@ -342,4 +342,4 @@ const util = {
   }
 };
 
-export default util;
+export default Utilities;

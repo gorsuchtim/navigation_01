@@ -2,21 +2,48 @@
 
 import "../Utilities/Utilities";
 import "../Utilities/BuildElement";
+import elementFactory from "../Utilities/BuildElement";
+
+const setCurrentPage = (currentButtons, page) => {
+  currentButtons.forEach(currentButton => {
+    var linkList = currentButton.nextElementSibling;
+    var links = Utilities.elementLib.toArray(
+      linkList.querySelectorAll(".meganav__link")
+    );
+
+    links.forEach(link => {
+      var fullHref = link.getAttribute("href");
+      var hrefPageName = fullHref.substring(
+        fullHref.lastIndexOf("/") + 1,
+        fullHref.lastIndexOf(".")
+      );
+
+      if (hrefPageName == page) {
+        link.classLIst.add("current--page");
+        elementFactory.init(link);
+      }
+    });
+  });
+};
 
 const setCurrentSections = dataSections => {
   var currentButtons = [];
   dataSections.forEach(dataSectionToMatch => {
     var meganav = document.querySelector(".meganav");
-    var navButtons = toArray(meganav.querySelectorAll("[data-section"));
+    var navButtons = Utilities.elementLib.toArray(
+      meganav.querySelectorAll("[data-section")
+    );
 
     navButtons.forEach(navButton => {
       if (navButton.getAttribute("data-section") == dataSectionToMatch) {
         navButton.classList.add("current--section");
-        elementFactory(navButton);
+        elementFactory.init(navButton);
+        currentButtons.push(navButton);
         currentButtons.push(navButton);
       }
     });
   });
+  return currentButtons;
 };
 
 const splicePage = pathSections => {
